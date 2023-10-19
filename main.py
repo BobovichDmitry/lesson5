@@ -4,6 +4,8 @@ import sys
 import shutil
 from money_bank import money_bank
 from viktorina import viktorina
+from function import *
+
 while True:
     print('1. создать папку')
     print('2. удалить(файл/папку)')
@@ -17,9 +19,10 @@ while True:
     print('10. мой банковский счет')
     print('11. смена рабочей директории')
     print('12. Выход')
+    print('13. Cохранить содержимое рабочей директории в файл')
     choice = input('Выберите пункт меню: ')
     if choice == '1':
-        #print(os.getcwd())
+        # print(os.getcwd())
         name_directory = str(input('Введите название директории для создания: '))
         os.mkdir(name_directory)
     elif choice == '2':
@@ -38,10 +41,11 @@ while True:
     elif choice == '3':
         name_what_copy = str(input('Введите название директории или файл который копируем: '))
         name_new_copy = str(input('Введите название для НОВОЙ директории или файла при копировании: '))
-        if os.path.isfile(name_what_copy):
-            shutil.copyfile(name_what_copy, name_new_copy)
-        if os.path.isdir(name_what_copy):
-            shutil.copytree(name_what_copy, name_new_copy)
+        copy_file_or_folder(name_what_copy, name_new_copy)
+        # if os.path.isfile(name_what_copy):
+        # shutil.copyfile(name_what_copy, name_new_copy)
+        # if os.path.isdir(name_what_copy):
+        # shutil.copytree(name_what_copy, name_new_copy)
 
     elif choice == '4':
         for root, dirs, files in os.walk(os.getcwd()):
@@ -65,6 +69,24 @@ while True:
         name_new_cwd = str(input('Введите новую рабочую директорию: '))
         os.chdir(name_new_cwd)
         print(os.getcwd())
+    elif choice == '13':
+        files_to_file = ''
+        dirs_to_files = ''
+        for root, dirs, files in os.walk(os.getcwd()):
+            for filename in files:
+                # print(filename)
+                files_to_file = str(files_to_file)  + ' , ' +  str(filename)
+                # with open("listdir.txt", 'a+') as ff:
+                # ff.write(f'{filename} ,  ')
+            for directory in dirs:
+                dirs_to_files = str(dirs_to_files) + ' , ' + str(directory)
+                print(dirs_to_files)
+                # with open("listdir.txt", 'a+') as ff:
+                # ff.write(f'{directory} ,  ')
+                # print(directory)
+        with open("listdir.txt", 'w') as ff:
+            ff.write(f' files: {files_to_file}\n')
+            ff.write(f' directory: {dirs_to_files}')
     elif choice == '12':
         break
     else:
