@@ -4,6 +4,7 @@ import sys
 import shutil
 from money_bank import money_bank
 from viktorina import viktorina
+from function import *
 while True:
     print('1. создать папку')
     print('2. удалить(файл/папку)')
@@ -38,10 +39,11 @@ while True:
     elif choice == '3':
         name_what_copy = str(input('Введите название директории или файл который копируем: '))
         name_new_copy = str(input('Введите название для НОВОЙ директории или файла при копировании: '))
-        if os.path.isfile(name_what_copy):
-            shutil.copyfile(name_what_copy, name_new_copy)
-        if os.path.isdir(name_what_copy):
-            shutil.copytree(name_what_copy, name_new_copy)
+        copy_file_or_folder(name_what_copy, name_new_copy)
+        #if os.path.isfile(name_what_copy):
+            #shutil.copyfile(name_what_copy, name_new_copy)
+        #if os.path.isdir(name_what_copy):
+            #shutil.copytree(name_what_copy, name_new_copy)
 
     elif choice == '4':
         for root, dirs, files in os.walk(os.getcwd()):
