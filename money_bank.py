@@ -33,16 +33,12 @@
 
 Для реализации основного меню можно использовать пример ниже или написать свой
 """
+from function import *
+balance = 0
 def money_bank():
     money_count = 0
     balance = 0
     history_buy = []
-
-
-    def add_money(cash, balance):
-        balance = cash + balance
-        return balance
-
 
     def history_pokuppok(cash, item_to_buy):
         history_buy.append((cash, item_to_buy))
