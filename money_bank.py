@@ -75,7 +75,7 @@ def money_bank():
             return balance
 
     while True:
-        print("Ваш баланс: ", balance)
+        vivod_balance(balance)
         print('1. пополнение счета')
         print('2. покупка')
         print('3. история покупок')

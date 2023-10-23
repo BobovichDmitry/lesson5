@@ -27,17 +27,23 @@ while True:
         os.mkdir(name_directory)
     elif choice == '2':
         name_to_delete = str(input('Введите название директории или файла для удаления: '))
-        if os.path.isfile(name_to_delete):
+        #if os.path.isfile(name_to_delete):
+            #print('THIS IS FILE')
+        try:
             os.remove(name_to_delete)
             print("Успешно удалено")
-        else:
-            print("Файл не существует")
-
-        if os.path.isdir(name_to_delete):
-            os.rmdir(name_to_delete)
-            print("Успешно удалено")
-        else:
-            print('Директория не найдена')
+        except Exception as e:
+                  print("Файл не существует")
+                  print(e)
+        #if os.path.isdir(name_to_delete):
+            #print('THIS IS DIR')
+        try:
+            #if
+             os.rmdir(name_to_delete)
+             print("Успешно удалено")
+        except Exception as e:
+             print("Директория не обнаружена")
+             print(e)
     elif choice == '3':
         name_what_copy = str(input('Введите название директории или файл который копируем: '))
         name_new_copy = str(input('Введите название для НОВОЙ директории или файла при копировании: '))
@@ -58,7 +64,7 @@ while True:
         files_to_see = [e for e in os.listdir() if os.path.isfile(e)]
         print(files_to_see)
     elif choice == '7':
-        print(platform.system())
+        print('У вас моя любимая Операционная система WINDOWS') if platform.system() == "Windows" else print("У вас какая-то неизвестная мне система ", platform.system())
     elif choice == '8':
         print('Creator: Bobovich Dmitry Aleksandrovich')
     elif choice == '9':
